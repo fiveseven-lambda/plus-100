@@ -10,9 +10,9 @@ int main(void){
 	int fd = open("/dev/zero", O_RDWR);
 	unsigned char *map = mmap(NULL, sizeof fnc, PROT_WRITE | PROT_EXEC, MAP_PRIVATE, fd, 0);
 	memcpy(map, fnc, sizeof fnc);
-	printf("fnc(3) = %d\n", ((int(*)(int))map)(3));
-	printf("fnc(10) = %d\n", ((int(*)(int))map)(10));
-	printf("fnc(520) = %d\n", ((int(*)(int))map)(520));
+	int a;
+	scanf("%d", &a);
+	printf("%d + 100 = %d\n", a, ((int(*)(int))map)(a));
 	close(fd);
 	munmap(map, sizeof fnc);
 	return 0;
